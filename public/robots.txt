@@ -1,0 +1,10 @@
+
+User-agent: *
+Allow: /
+
+# Allow search engines to crawl all important content
+Sitemap: https://yourdomain.com/sitemap.xml
+
+# Disallow duplicate content paths
+Disallow: /api/
+Disallow: /admin/

@@ -1,0 +1,168 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 33% 99%;
+    --foreground: 210 33% 15%;
+
+    --card: 210 33% 99%;
+    --card-foreground: 210 33% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 215 55% 15%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 195 40% 34%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 1rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-off-white text-foreground font-montserrat overflow-x-hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-gradient-to-r from-navy to-teal bg-clip-text text-transparent;
+  }
+
+  .cta-button {
+    @apply bg-cta-gradient text-white font-semibold px-8 py-4 rounded-xl shadow-cta transition-all duration-300 transform hover:shadow-cta-hover hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24;
+  }
+
+  .card-premium {
+    @apply bg-white bg-opacity-95 backdrop-blur-sm rounded-2xl shadow-card border border-light-blue/20 p-6 transition-all duration-300 hover:shadow-lg;
+  }
+  
+  /* Highlight the form card */
+  .form-highlight {
+    @apply bg-white shadow-2xl border-2 border-emerald/20 rounded-2xl relative overflow-hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-highlight::before {
+    content: '';
+    @apply absolute -top-10 -right-10 w-40 h-40 bg-gradient-to-br from-emerald/30 to-emerald-dark/10 rounded-full blur-2xl opacity-60 z-0;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border border-light-blue/50 px-4 py-3 bg-white bg-opacity-95 shadow-soft focus:outline-none focus:ring-2 focus:ring-teal/30 transition-all duration-300;
+  }
+
+  .notification-bubble {
+    @apply fixed bottom-4 left-4 z-50 max-w-xs bg-white rounded-xl shadow-card border border-light-blue/30 p-4;
+  }
+  
+  /* Simple Typing Animation */
+  .typing-dot {
+    animation: typingDot 1s infinite ease-in-out;
+    animation-delay: calc(var(--dot-index, 0) * 0.2s);
+  }
+  
+  .typing-dot:nth-child(1) {
+    --dot-index: 0;
+  }
+  
+  .typing-dot:nth-child(2) {
+    --dot-index: 1;
+  }
+  
+  .typing-dot:nth-child(3) {
+    --dot-index: 2;
+  }
+  
+  /* Fluid Progress Bar */
+  .fluid-progress-bar {
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    background-size: 200% 100%;
+    animation: gradientShift 4s infinite linear;
+    /* Ensure color is visible from the beginning */
+    min-width: 0.5rem;
+  }
+}
+
+@layer utilities {
+  .font-playfair {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-montserrat {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+/* Simple animations */
+@keyframes typingDot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-4px);
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Basic pulse animation for the online indicator */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
